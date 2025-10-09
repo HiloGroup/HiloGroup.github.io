@@ -54,11 +54,21 @@ window.HILOGroup.sign = {
         throw error;
       });
   },
-  sayHello(name) {
-    console.log(`Xin chào ${name}`);
+  getAllCertificates() {
+    const url = `${this.currentSchema}://localhost:${this.currentPort}/api/certificate/getall`;
+    return this.callApi({
+      url: url,
+      method: 'GET',
+    });
   },
-  showVersion() {
-    console.log("Phiên bản: 1.0.0");
+  signXml(data) {
+    const url = `${this.currentSchema}://localhost:${this.currentPort}/api/certificate/sign78`;
+    return this.callApi({
+      url: url,
+      method: 'POST',
+      data:JSON.stringify(data),
+      contentType: "application/json"
+    });
   }
 };
 window.HILOGroup.sign.init();

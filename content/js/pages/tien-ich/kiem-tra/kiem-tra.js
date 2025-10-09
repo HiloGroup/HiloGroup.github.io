@@ -16,6 +16,20 @@ HILOGroup.sign.checkAllPorts()
             `;
             contentFeatures.appendChild(card);
         });
+        if (results.every(r => !r.version)) {
+            const card = document.createElement('div');
+            card.className = 'col-md-3';
+            card.innerHTML = `
+                <div class="card h-100 border-default">
+                    <div class="card-body">
+                        <h5 class="card-title">Mở ứng dụng</h5>
+                        <p class="card-text"></p>
+                        <a href="HiloPlugin://sign" class="btn btn-default border-default text-white">Mở ứng dụng</a>
+                    </div>
+                </div>
+            `;
+            contentFeatures.appendChild(card);
+        }
     })
     .catch(error => {
         console.error("Error checking ports:", error);
