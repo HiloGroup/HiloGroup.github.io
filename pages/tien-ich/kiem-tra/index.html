@@ -16,8 +16,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.min.js" integrity="sha512-nKXmKvJyiGQy343jatQlzDprflyB5c+tKCzGP3Uq67v+lmzfnZUi/ZT+fc6ITZfSC5HhaBKUIvr/nTLCV+7F+Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
   <script src="../../../content/js/sign.js" defer></script>
+  <script src="../../../content/js/pages/tien-ich/kiem-tra/kiem-tra.js" defer></script>
 </head>
 <body>
      <nav class="navbar navbar-expand-lg navbar-dark bg-default">
@@ -49,26 +50,8 @@
         </div>
     </nav>
     <div class="container-fluid mt-5 text-center" id="features">
-        <h1 class="text-default mb-4">Tiện ích Ký số HILO</h1>
-        <div class="row g-4 justify-content-center">
-            <div class="col-md-3">
-                <div class="card h-100 border-default">
-                    <div class="card-body">
-                        <h5 class="card-title">Danh sách chữ ký số</h5>
-                        <p class="card-text">Danh sách chữ ký số trên máy tính</p>
-                        <a href="xml-sign.html" class="btn btn-default border-default text-white">Thao tác</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card h-100 border-default">
-                    <div class="card-body">
-                        <h5 class="card-title">Ký số XML</h5>
-                        <p class="card-text">Ký thử XML</p>
-                        <a href="xml-sign.html" class="btn btn-default border-default text-white">Thao tác</a>
-                    </div>
-                </div>
-            </div>
+        <h1 class="text-default mb-4">Danh sách cổng đang hoạt động</h1>
+        <div class="row g-4 justify-content-center" id="content-features">
         </div>
     </div>
     <footer class="bg-blue-default text-white text-center py-3 mt-5 fixed-bottom">
