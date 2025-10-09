@@ -1,0 +1,39 @@
+@charset "UTF-8";
+:root {
+    --colorDefault: #ff6600;
+    --colorBlueDefault: #000080;
+}
+body {
+    margin: 0 auto !important;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f8f9fa;
+    color: #222;
+}
+.bg-default {
+    background-color: var(--colorDefault) !important;
+}
+.text-default {
+    color: var(--colorDefault) !important;
+}
+.border-default {
+    border-color: var(--colorDefault) !important;
+}
+.btn-default {
+    background-color: var(--colorDefault) !important;
+    border: 1px solid var(--colorDefault) !important;
+    color: #fff !important;
+}
+.bg-blue-default {
+    background-color: var(--colorBlueDefault) !important;
+}
+.text-blue-default {
+    color: var(--colorBlueDefault) !important;
+}
+.border-blue-default {
+    border-color: var(--colorBlueDefault) !important;
+}
+.btn-blue-default {
+    background-color: var(--colorBlueDefault) !important;
+    border: 1px solid var(--colorBlueDefault) !important;
+    color: #fff !important;
+}
