@@ -1,0 +1,307 @@
+{
+	"info": {
+		"_postman_id": "b3a166ac-6ebc-4b88-8042-901b720f95f0",
+		"name": "Hilo Plugin Ký số",
+		"description": "# Chào mừng đến với công ty cổ phần dịch vụ T-VAN HILO\n\nPhần mềm hỗ trợ ký số T-VAN HILO giúp bạn ký số an toàn cho hóa đơn điện tử, văn bản, tài liệu.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3482176"
+	},
+	"item": [
+		{
+			"name": "Api",
+			"item": [
+				{
+					"name": "Chứng thư số",
+					"item": [
+						{
+							"name": "Xem phiên bản",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{schema}}{{host}}/api/certificate/getversion",
+									"host": [
+										"{{schema}}{{host}}"
+									],
+									"path": [
+										"api",
+										"certificate",
+										"getversion"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Chọn chữ ký số",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{schema}}{{host}}/api/certificate/get",
+									"host": [
+										"{{schema}}{{host}}"
+									],
+									"path": [
+										"api",
+										"certificate",
+										"get"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Kiểm tra CRL",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{schema}}{{host}}/api/certificate/CheckCRL?CertSerial=",
+									"host": [
+										"{{schema}}{{host}}"
+									],
+									"path": [
+										"api",
+										"certificate",
+										"CheckCRL"
+									],
+									"query": [
+										{
+											"key": "CertSerial",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Kiểm tra OCSP",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{schema}}{{host}}/api/certificate/CheckOCSP?CertSerial=",
+									"host": [
+										"{{schema}}{{host}}"
+									],
+									"path": [
+										"api",
+										"certificate",
+										"CheckOCSP"
+									],
+									"query": [
+										{
+											"key": "CertSerial",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Danh sách chữ ký số trên mày tính",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{schema}}{{host}}/api/certificate/getall",
+									"host": [
+										"{{schema}}{{host}}"
+									],
+									"path": [
+										"api",
+										"certificate",
+										"getall"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ký Xml theo chuẩn hóa đơn 78",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"IdToSign\": \"DL\",\r\n  \"XMLDataToSign\": \"<XmlTemplate><Data Id=\\\"DL\\\"></Data><DSCKS><NNT /></DSCKS></XmlTemplate>\",\r\n  \"HashAlgorithm\": \"SHA256\",\r\n  \"RSASignaturePadding\": \"Pkcs1\",\r\n  \"CertSerial\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{schema}}{{host}}/api/certificate/Sign78",
+									"host": [
+										"{{schema}}{{host}}"
+									],
+									"path": [
+										"api",
+										"certificate",
+										"Sign78"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ký nhiều Xml theo chuẩn hóa đơn 78 Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"IdToSign\": \"DL\",\r\n  \"Sign78s\": [\r\n    {\r\n      \"InvoiceID\": \"string\",\r\n      \"IdToSign\": \"DL\",\r\n      \"XMLDataToSign\": \"<XmlTemplate><Data Id=\\\"DL\\\"></Data><DSCKS><NNT /></DSCKS></XmlTemplate>\"\r\n    },\r\n    {\r\n      \"InvoiceID\": \"string2\",\r\n      \"IdToSign\": \"DL\",\r\n      \"XMLDataToSign\": \"<XmlTemplate><Data Id=\\\"DL\\\"></Data><DSCKS><NNT /></DSCKS></XmlTemplate>\"\r\n    }\r\n  ],\r\n  \"HashAlgorithm\": \"SHA256\",\r\n  \"RSASignaturePadding\": \"Pkcs1\",\r\n  \"CertSerial\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{schema}}{{host}}/api/certificate/Sign78s",
+									"host": [
+										"{{schema}}{{host}}"
+									],
+									"path": [
+										"api",
+										"certificate",
+										"Sign78s"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cài root CA",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"CertSerial\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{schema}}{{host}}/api/certificate/InstallRootCA",
+									"host": [
+										"{{schema}}{{host}}"
+									],
+									"path": [
+										"api",
+										"certificate",
+										"InstallRootCA"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Ký Hash",
+					"item": [
+						{
+							"name": "Ký hash 1-1",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"data\": \"2JI5VJsRLke0SVUzjO7QnYVc6W0GODjhrOmwFsRduCQ=\",\r\n  \"isHash\": true,\r\n  \"HashAlgorithm\": \"SHA256\",\r\n  \"RSASignaturePadding\": \"Pkcs1\",\r\n  \"CertSerial\": \"5401136890EFCB1CED8F918B5D27B8F71\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{schema}}{{host}}/api/hash/Sign",
+									"host": [
+										"{{schema}}{{host}}"
+									],
+									"path": [
+										"api",
+										"hash",
+										"Sign"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ký hash nhiều",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"isHash\": false,\r\n  \"data\": [\r\n    {\r\n      \"data\": \"2JI5VJsRLke0SVUzjO7QnYVc6W0GODjhrOmwFsRduCQ\",\r\n      \"key\": \"1\"\r\n    },\r\n    {\r\n      \"data\": \"2JI5VJsRLke0SVUzjO7QnYVc6W0GODjhrOmwFsRduCQ\",\r\n      \"key\": \"2\"\r\n    }\r\n  ],\r\n  \"HashAlgorithm\": \"SHA256\",\r\n  \"RSASignaturePadding\": \"Pkcs1\",\r\n  \"CertSerial\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{schema}}{{host}}/api/hash/Signs",
+									"host": [
+										"{{schema}}{{host}}"
+									],
+									"path": [
+										"api",
+										"hash",
+										"Signs"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "schema",
+			"value": ""
+		},
+		{
+			"key": "host",
+			"value": ""
+		}
+	]
+}

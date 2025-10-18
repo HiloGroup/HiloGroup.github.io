@@ -1,4 +1,4 @@
-HILOGroup.sign.checkAllPorts()
+//HILOGroup.sign.checkAllPorts()
     .then(results => {
         const contentFeatures = document.getElementById('content-features');
 
