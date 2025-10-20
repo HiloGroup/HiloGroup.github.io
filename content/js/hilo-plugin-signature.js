@@ -137,7 +137,7 @@ window.HiloPluginSignature.Plugin = {
                 return resolve(this.currentHost);
             else
                 this.checkAllHosts().then((value) => {
-            
+
                     if (this.availabilityHosts.length > 0) {
                         this.currentHost = this.availabilityHosts[0].Host;
                     }
@@ -150,28 +150,10 @@ window.HiloPluginSignature.Plugin = {
         });
     },
     getAllCertificates() {
-        return new Promise((resolve, reject) => {
-            this.getRandomHost().then((host) => {
-                this.httpRequest(`${host}${this.url.getAllCertificates}`)
-                    .then(data => {
-                        resolve(data ?? []);
-                    }).catch(error => {
-                        resolve([])
-                    })
-            });
-        });
+         return this.getRandomHost().then((host) => this.httpRequest(`${host}${this.url.getAllCertificates}`));
     },
     selectCertificate() {
-        return new Promise((resolve, reject) => {
-            this.getRandomHost().then((host) => {
-                this.httpRequest(`${host}${this.url.selectCertificate}`)
-                    .then(data => {
-                        resolve(data);
-                    }).catch(error => {
-                        resolve(null)
-                    })
-            });
-        });
+        return this.getRandomHost().then((host) => this.httpRequest(`${host}${this.url.selectCertificate}`));
     },
     signHash(data) {
 
