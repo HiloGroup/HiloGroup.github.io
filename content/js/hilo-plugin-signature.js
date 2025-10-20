@@ -2,19 +2,54 @@ window.HiloPluginSignature = window.HiloPluginSignature || {};
 
 window.HiloPluginSignature.Plugin = {
     schemas: ['http', 'https'],
-    ports: [56789, 5050,6060,7070,8080,9090,6789],
-    hosts:[],
-    availabilityHosts:[],
-    currentHost: null,    
-    test : {        
-        dataSignXmlTest: {
+    ports: [56789, 5050, 6060, 7070, 8080, 9090, 6789],
+    domain: "hilo-signature-plugin.hilo.com.vn",
+    deeplinkUrl: "HiloPlugin://openapp",
+    linkDownload: "https://hilogroup.github.io/pages/tai-xuong/index.html",
+    url: {
+        getVersion: "/api/certificate/getversion",
+        getAllCertificates: "/api/certificate/getall",
+        selectCertificate: "/api/certificate/get",
+        signXml: "/api/certificate/sign78",
+        signXmls: "/api/certificate/Sign78s",
+        signHash: "/api/hash/Sign",
+        signHashs: "/api/hash/Signs",
+    },
+    hosts: [],
+    availabilityHosts: [],
+    currentHost: null,
+    test: {
+        hash: {
+            Data: "2JI5VJsRLke0SVUzjO7QnYVc6W0GODjhrOmwFsRduCQ=",
+            IsHash: true,
+            HashAlgorithm: "SHA256",
+            RSASignaturePadding: "Pkcs1",
+            CertSerial: ""
+        },
+        hashs: {
+            IsHash: false,
+            Data: [
+                {
+                    Data: "2JI5VJsRLke0SVUzjO7QnYVc6W0GODjhrOmwFsRduCQ",
+                    Key: "1"
+                },
+                {
+                    Data: "2JI5VJsRLke0SVUzjO7QnYVc6W0GODjhrOmwFsRduCQ",
+                    Key: "2"
+                }
+            ],
+            HashAlgorithm: "SHA256",
+            RSASignaturePadding: "Pkcs1",
+            CertSerial: ""
+        },
+        xml: {
             IdToSign: "HiloGroup",
             XMLDataToSign: "<XmlTemplate><Data Id=\"HiloGroup\"></Data><DSCKS><NNT /></DSCKS></XmlTemplate>",
             HashAlgorithm: "SHA256",
             RSASignaturePadding: "Pkcs1",
             CertSerial: "",
         },
-        dataSignXmlsTest: {
+        xmls: {
             IdToSign: "",
             Sign78s: [
                 {
@@ -32,21 +67,20 @@ window.HiloPluginSignature.Plugin = {
             RSASignaturePadding: "Pkcs1",
             CertSerial: "",
         },
-        signXml:function() {
-            return window.HiloPluginSignature.Plugin.signXml(this.dataSignXmlTest).then(response => {
-                console.log(response);
-                return response;
-            });
+        signXml: function () {
+            return window.HiloPluginSignature.Plugin.signXml(this.xml);
         },
-        signXmls:function() {
-            return window.HiloPluginSignature.Plugin.signXmls(this.dataSignXmlsTest).then(response => {
-            console.log(response);
-            return response;
-        })
+        signXmls: function () {
+            return window.HiloPluginSignature.Plugin.signXmls(this.xmls);
+        },
+        signHash: function () {
+            return window.HiloPluginSignature.Plugin.signHash(this.hash);
+        },
+        signHashs: function () {
+            return window.HiloPluginSignature.Plugin.signHashs(this.hashs);
         }
     },
-    httpRequest:function(url, method = 'GET', data = null)
-    {
+    httpRequest: function (url, method = 'GET', data = null) {
         return new Promise((resolve, reject) => {
             fetch(url, {
                 method: method,
@@ -55,91 +89,107 @@ window.HiloPluginSignature.Plugin = {
                 },
                 body: data ? JSON.stringify(data) : null
             })
-            .then(response => response.json())
-            .then(response => { 
-                if(response && response.status)
-                    resolve(response.Data);
-                else
-                    reject(response?.Message??"Lỗi không xác định");
-             })
-            .catch(reject)
-            ;
+                .then(response => response.json())
+                .then(response => {
+                    if (response && response.status)
+                        resolve(response.Data);
+                    else
+                        reject(response?.Message ?? "Lỗi không xác định");
+                })
+                .catch(reject)
+                ;
         });
     },
     init() {
-        this.hosts = this.schemas.flatMap(schema =>this.ports.map(port => `${schema}://hilo-signature-plugin.hilo.com.vn:${port}`));
+        this.hosts = this.schemas.flatMap(schema => this.ports.map(port => `${schema}://${this.domain}:${port}`));
+    },
+    openApp() {
+        var deeplinkUrl = this.deeplinkUrl;
+        var linkDownload = this.linkDownload;
+        const windowOpened = window.open(deeplinkUrl, 'Phần mềm ký số T-VAN HILO');
+        setTimeout(function () {
+            console.log(windowOpened);
+            if (windowOpened.closed === false) {
+                windowOpened.location.href = linkDownload;
+            }
+        }, 1000);
     },
     checkHost(host) {
         return new Promise((resolve, reject) => {
-            this.httpRequest(`${host}/api/certificate/getversion`)     
-            .then(data => {              
-                resolve({Host: host, IsAvailability: true});
-            }).catch(error => {
-                resolve({Host: host, IsAvailability: false});
-            })
+            this.httpRequest(`${host}${this.url.getVersion}`)
+                .then(data => {
+                    resolve({ Host: host, IsAvailability: data != null, Version: data });
+                }).catch(error => {
+                    resolve({ Host: host, IsAvailability: false });
+                })
         });
     },
     checkAllHosts() {
         return Promise.all(this.hosts.map(host => this.checkHost(host)))
             .then(results => {
                 this.availabilityHosts = results.filter(result => result.IsAvailability);
-                if(this.availabilityHosts.length > 0) {
-                    this.currentHost = this.availabilityHosts[0].Host;
-                }
-                return this.currentHost;
+                return results;
             })
     },
     getRandomHost() {
         return new Promise((resolve, reject) => {
-            if(this.currentHost != null)
+            if (this.currentHost != null)
                 return resolve(this.currentHost);
             else
                 this.checkAllHosts().then((value) => {
-                    resolve(this.currentHost);
+            
+                    if (this.availabilityHosts.length > 0) {
+                        this.currentHost = this.availabilityHosts[0].Host;
+                    }
+                    if (this.currentHost == null) {
+                        return reject("Không tìm thấy Hilo Signature Plugin đang chạy trên máy tính của bạn. Vui lòng khởi động Hilo Signature Plugin để sử dụng chức năng ký số.");
+                    }
+                    else
+                        resolve(this.currentHost);
                 })
         });
     },
     getAllCertificates() {
         return new Promise((resolve, reject) => {
             this.getRandomHost().then((host) => {
-                this.httpRequest(`${host}/api/certificate/getall`)
-                .then(data => {       
-                    resolve(data??[]);
-                }).catch(error => {
-                    resolve([])
-                })
+                this.httpRequest(`${host}${this.url.getAllCertificates}`)
+                    .then(data => {
+                        resolve(data ?? []);
+                    }).catch(error => {
+                        resolve([])
+                    })
             });
         });
     },
     selectCertificate() {
         return new Promise((resolve, reject) => {
             this.getRandomHost().then((host) => {
-                this.httpRequest(`${host}/api/certificate/get`)
-                .then(data => {   
-                    resolve(data);
-                }).catch(error => {
-                    resolve(null)
-                })
+                this.httpRequest(`${host}${this.url.selectCertificate}`)
+                    .then(data => {
+                        resolve(data);
+                    }).catch(error => {
+                        resolve(null)
+                    })
             });
         });
+    },
+    signHash(data) {
+
+        return this.getRandomHost().then((host) => this.httpRequest(`${host}${this.url.signHash}`, 'POST', data));
+
+    },
+    signHashs(data) {
+
+
+        return this.getRandomHost().then((host) => this.httpRequest(`${host}${this.url.signHashs}`, 'POST', data));
     },
     signXml(data) {
-        return new Promise((resolve, reject) => {
-            this.getRandomHost().then((host) => {
-                this.httpRequest(`${host}/api/certificate/sign78`, 'POST', data)
-                .then(resolve).catch(reject)
-            });
-        });
+        return this.getRandomHost().then((host) => this.httpRequest(`${host}${this.url.signXml}`, 'POST', data));
     },
     signXmls(data) {
-        
-        return new Promise((resolve, reject) => {
-            this.getRandomHost().then((host) => {
-                this.httpRequest(`${host}/api/certificate/Sign78s`, 'POST', data)
-                .then(resolve).catch(reject)
-            });
-        });
+
+        return this.getRandomHost().then((host) => this.httpRequest(`${host}${this.url.signXmls}`, 'POST', data));
     }
 }
-;
+    ;
 window.HiloPluginSignature.Plugin.init();

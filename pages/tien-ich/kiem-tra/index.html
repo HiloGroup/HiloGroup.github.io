@@ -17,8 +17,8 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.min.js" integrity="sha512-nKXmKvJyiGQy343jatQlzDprflyB5c+tKCzGP3Uq67v+lmzfnZUi/ZT+fc6ITZfSC5HhaBKUIvr/nTLCV+7F+Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-  <script src="../../../content/js/sign.js" defer></script>
-  <script src="../../../content/js/pages/tien-ich/kiem-tra/kiem-tra.js" defer></script>
+  <script src="../../../content/js/hilo-plugin-signature.js" defer></script>
+    <script src="../../../content/js/pages/tien-ich/kiem-tra/kiem-tra.js" defer></script>
 </head>
 <body>
      <nav class="navbar navbar-expand-lg navbar-dark bg-default">
@@ -51,6 +51,27 @@
     </nav>
     <div class="container-fluid mt-5 text-center" id="features">
         <h1 class="text-default mb-4">Danh sách cổng đang hoạt động</h1>
+        
+        <div class="row g-4 mb-4 justify-content-center">
+            <div class="col-md-3">
+                <div class="card h-100 border-default">
+                    <div class="card-body">
+                        <h5 class="card-title">Mở ứng dụng</h5>
+                        <p class="card-text"></p>
+                        <a id="btnOpenApplication" class="btn btn-default border-default text-white">Mở ứng dụng</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 border-default">
+                    <div class="card-body">
+                        <h5 class="card-title">Xem danh sách cổng</h5>
+                        <p class="card-text"></p>
+                        <a id="btnShowPorts" class="btn btn-default border-default text-white">Xem danh sách cổng</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row g-4 justify-content-center" id="content-features">
         </div>
     </div>

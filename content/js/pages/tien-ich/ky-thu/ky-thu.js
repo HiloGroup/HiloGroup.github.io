@@ -1,88 +1,70 @@
-//HILOGroup.sign.checkAllPorts()
-    .then(results => {
-        const contentFeatures = document.getElementById('content-features');
-
-        if (results.every(r => !r.version)) {
-            const card = document.createElement('div');
-            card.className = 'col-md-3';
-            card.innerHTML = `
-            <div class="card h-100 border-default">
-                <div class="card-body">
-                    <h5 class="card-title">Mở ứng dụng</h5>
-                    <p class="card-text"></p>
-                    <a href="HiloPlugin://sign" class="btn btn-default border-default text-white">Mở ứng dụng</a>
-                </div>
-            </div>
-        `;
-            contentFeatures.appendChild(card);
-        }
-        else {
-            var first = results.find(r => r.version);
-            HILOGroup.sign.currentPort = first.port;
-            HILOGroup.sign.currentSchema = first.schema;
-
-            const card = document.createElement('div');
-            card.className = 'col-md-3';
-            card.innerHTML = `
-            <div class="card h-100 border-default">
-                <div class="card-body">
-                    <h5 class="card-title"></h5>
-                    <p class="card-text"></p>
-                    <button id="sign-button" class="btn btn-default border-default text-white">Ký thử</button>
-                </div>
-            </div>
-            `;
-            contentFeatures.appendChild(card);
-            $('#sign-button').on('click', function () {
-                HILOGroup.sign.signXml({
-                    IdToSign: "DL",
-                    XMLDataToSign: "<XmlTemplate><Data Id=\"DL\"></Data><DSCKS><NNT /></DSCKS></XmlTemplate>",
-                    HashAlgorithm: "SHA256",
-                    RSASignaturePadding: "Pkcs1",
-                    CertSerial: "",
-                }).then(response => {
-                    if (response?.status === true) {
-                        var beautifiedXmlText = new XmlBeautify().beautify(response.data,
+$("#btnOpenApplication").click(function() {
+    HiloPluginSignature.Plugin.openApp()
+});
+formatXml = function(xmlString) {
+    return new XmlBeautify().beautify(xmlString,
                             {
                                 indent: "  ",  //indent pattern like white spaces
                                 useSelfClosingElement: true //true:use self-closing element when empty element.
-                            });
-                        beautifiedXmlText = beautifiedXmlText
-                            .replace(/&/g, "&amp;")
+                            })
+                            ;
+}
+$("#btnXmlSignSingle").click(function() {
+    document.getElementById('xmlToSignSingle').innerText = formatXml(HiloPluginSignature.Plugin.test.xml.XMLDataToSign);
+    HiloPluginSignature.Plugin.test.signXml().then(response => {
+        console.log(response);
+        document.getElementById('xmlToSignSingleResult' ).innerHTML = formatXml(response).replace(/&/g, "&amp;")
                             .replace(/</g, "&lt;")
                             .replace(/>/g, "&gt;");
-                        Swal.fire({
-                            title: "Thành công",
-                            icon: "info",
-                            html: `<pre id="xmlBox" style="text-align:left;white-space:pre-wrap;">${beautifiedXmlText}</pre>`,
-                            width: '80%',
-                            html: `
-      <pre id="xmlBox" style="
-        text-align:left;
-        background:#0b1220;
-        color:#e6eef7;
-        padding:14px;
-        border-radius:8px;
-        font-size:13px;
-        line-height:1.4;
-        max-height:60vh;
-        overflow:auto;
-        white-space:pre;
-      ">${beautifiedXmlText}</pre>
-    `,
-                            width: "90%",
-                            confirmButtonText: "Đóng",
-                        });
-                    }
-                    else {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Ký thất bại",
-                            text: response?.Message
-                        });
-                    }
-                });
-            })
-        }
     })
-    ;
+    .catch(error => {
+        document.getElementById('xmlToSignSingleResult' ).innerHTML = error;
+    })
+});
+$("#btnXmlToSignMultiple").click(function() {
+    let xmls = HiloPluginSignature.Plugin.test.xmls;
+    document.getElementById('xmlToSignMultiple1').innerText = formatXml(xmls.Sign78s[0].XMLDataToSign);
+    document.getElementById('xmlToSignMultiple2').innerText = formatXml(xmls.Sign78s[1].XMLDataToSign);
+    HiloPluginSignature.Plugin.test.signXmls().then(response => {
+        console.log(response);
+        document.getElementById('xmlToSignMultiple1' ).innerHTML = formatXml(response.Items[0].XMLDataToSign).replace(/&/g, "&amp;")
+                            .replace(/</g, "&lt;")
+                            .replace(/>/g, "&gt;");
+        document.getElementById('xmlToSignMultiple1Result' ).innerHTML = formatXml(response.Items[0].XmlSignature).replace(/&/g, "&amp;")
+                            .replace(/</g, "&lt;")
+                            .replace(/>/g, "&gt;");
+        document.getElementById('xmlToSignMultiple2' ).innerHTML = formatXml(response.Items[1].XMLDataToSign).replace(/&/g, "&amp;")
+                            .replace(/</g, "&lt;")
+                            .replace(/>/g, "&gt;");
+        document.getElementById('xmlToSignMultiple1Result2' ).innerHTML = formatXml(response.Items[1].XmlSignature).replace(/&/g, "&amp;")
+                            .replace(/</g, "&lt;")
+                            .replace(/>/g, "&gt;");
+    })
+    .catch(error => {
+        document.getElementById('xmlToSignMultiple1Result' ).innerHTML = error;
+    })
+});
+$("#btnHashSignSingle").click(function() {
+    document.getElementById('hashToSignSingle').innerText = HiloPluginSignature.Plugin.test.hash.Data;
+    HiloPluginSignature.Plugin.test.signHash().then(response => {
+        console.log(response);
+        document.getElementById('hashToSignSingleResult' ).innerText = response.Data;
+    }
+    ).catch(error => {
+        document.getElementById('hashToSignSingleResult' ).innerText = error;
+    });
+});
+$("#btnHashSignMultiple").click(function() {
+    let hashs = HiloPluginSignature.Plugin.test.hashs;
+    document.getElementById('hashToSignMultiple1').innerText = hashs.Data[0].Data;
+    document.getElementById('hashToSignMultiple2').innerText = hashs.Data[1].Data;
+    HiloPluginSignature.Plugin.test.signHashs().then(response => {
+        console.log(response);
+        document.getElementById('hashToSignMultiple1').innerText = response[0].Hash;
+        document.getElementById('hashToSignMultiple1Result' ).innerText = response[0].Data;
+        document.getElementById('hashToSignMultiple2').innerText = response[1].Hash;
+        document.getElementById('hashToSignMultipleResult2' ).innerText = response[1].Data;
+    }).catch(error => {
+        document.getElementById('hashToSignMultiple1Result' ).innerText = error;
+    });
+});

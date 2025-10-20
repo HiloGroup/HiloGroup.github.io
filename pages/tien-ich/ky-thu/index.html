@@ -1,40 +1,55 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
-  <link rel="icon" type="image/x-icon" href="../../../content/image/hilo.ico">
-  <title>Phần mềm ký số T-VAN HILO</title>
-  <meta name="description" content="Phần mềm hỗ trợ ký số HILO — Ký số an toàn cho hóa đơn điện tử, văn bản, tài liệu. Hỗ trợ PKCS#11, token USB, HSM, XMLDSig, CMS/P7S, PDF ký số.">
-  <meta name="theme-color" content="#0f766e" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="../../../content/css/page.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.23.0/sweetalert2.min.css" integrity="sha512-Ivy7sPrd6LPp20adiK3al16GBelPtqswhJnyXuha3kGtmQ1G2qWpjuipfVDaZUwH26b3RDe8x707asEpvxl7iA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.min.js" integrity="sha512-nKXmKvJyiGQy343jatQlzDprflyB5c+tKCzGP3Uq67v+lmzfnZUi/ZT+fc6ITZfSC5HhaBKUIvr/nTLCV+7F+Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.23.0/sweetalert2.all.min.js" integrity="sha512-J+4Nt/+nieSNJjQGCPb8jKf5/wv31QiQM10bOotEHUKc9tB1Pn0gXQS6XXPtDoQhHHao5poTnSByMInzafUqzA==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/xml-beautify@1.2.3/dist/XmlBeautify.min.js" defer></script>
-  <script src="../../../content/js/sign.js" defer></script>
-  <script src="../../../content/js/pages/tien-ich/ky-thu/ky-thu.js" defer></script>
-  <script src="../../../content/js/hilo-plugin-signature.js" defer></script>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" type="image/x-icon" href="../../../content/image/hilo.ico">
+    <title>Phần mềm ký số T-VAN HILO</title>
+    <meta name="description"
+        content="Phần mềm hỗ trợ ký số HILO — Ký số an toàn cho hóa đơn điện tử, văn bản, tài liệu. Hỗ trợ PKCS#11, token USB, HSM, XMLDSig, CMS/P7S, PDF ký số.">
+    <meta name="theme-color" content="#0f766e" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../../../content/css/page.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css"
+        integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.23.0/sweetalert2.min.css"
+        integrity="sha512-Ivy7sPrd6LPp20adiK3al16GBelPtqswhJnyXuha3kGtmQ1G2qWpjuipfVDaZUwH26b3RDe8x707asEpvxl7iA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.min.js"
+        integrity="sha512-nKXmKvJyiGQy343jatQlzDprflyB5c+tKCzGP3Uq67v+lmzfnZUi/ZT+fc6ITZfSC5HhaBKUIvr/nTLCV+7F+Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.23.0/sweetalert2.all.min.js"
+        integrity="sha512-J+4Nt/+nieSNJjQGCPb8jKf5/wv31QiQM10bOotEHUKc9tB1Pn0gXQS6XXPtDoQhHHao5poTnSByMInzafUqzA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/xml-beautify@1.2.3/dist/XmlBeautify.min.js" defer></script>
+    <script src="../../../content/js/hilo-plugin-signature.js" defer></script>
+    <script src="../../../content/js/pages/tien-ich/ky-thu/ky-thu.js" defer></script>
 </head>
+
 <body>
-     <nav class="navbar navbar-expand-lg navbar-dark bg-default">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-default">
         <div class="container-fluid">
             <a class="navbar-brand bg-white p-2 rounded" href="#">
                 <img src="../../../content/image/hilo.png" height="40" alt="HILO Logo">
             </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -55,11 +70,95 @@
     </nav>
     <div class="container-fluid mt-5 text-center" id="features">
         <h1 class="text-default mb-4">Ký thử</h1>
+
+        <div class="row g-4 mb-4 justify-content-center">
+            <div class="col-md-3">
+                <div class="card h-100 border-default">
+                    <div class="card-body">
+                        <h5 class="card-title">Mở ứng dụng</h5>
+                        <p class="card-text"></p>
+                        <a id="btnOpenApplication" class="btn btn-default border-default text-white">Mở ứng dụng</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row g-4 justify-content-center" id="content-features">
+
+            <div class="col-md-6">
+                <div class="card h-100 border-default">
+                    <div class="card-body">
+                        <h5 class="card-title">Ký XML 1 - 1</h5>
+                        <p class="card-text border border-default">
+                        <pre id="xmlToSignSingle" class="text-start"></pre>
+                        </p>
+                        <p class="card-text border border-default">
+                        <pre id="xmlToSignSingleResult" class="text-start"></pre>
+                        </p>
+                        <a id="btnXmlSignSingle" class="btn btn-default border-default text-white">Ký</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card h-100 border-default">
+                    <div class="card-body">
+                        <h5 class="card-title">Ký XML Nhiều</h5>
+                        <p class="card-text border border-default">
+                        <pre id="xmlToSignMultiple1" class="text-start"></pre>
+                        </p>
+                        <p class="card-text border border-default">
+                        <pre id="xmlToSignMultiple1Result" class="text-start"></pre>
+                        </p>
+                        <p class="card-text border border-default">
+                        <pre id="xmlToSignMultiple2" class="text-start"></pre>
+                        </p>
+                        <p class="card-text border border-default">
+                        <pre id="xmlToSignMultiple1Result2" class="text-start"></pre>
+                        </p>
+                        <a id="btnXmlToSignMultiple" class="btn btn-default border-default text-white">Ký</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-default">
+                    <div class="card-body">
+                        <h5 class="card-title">Ký Hash 1 - 1</h5>
+                        <p class="card-text border border-default">
+                        <pre id="hashToSignSingle" class="text-start"></pre>
+                        </p>
+                        <p class="card-text border border-default">
+                        <pre id="hashToSignSingleResult" class="text-start"></pre>
+                        </p>
+                        <a id="btnHashSignSingle" class="btn btn-default border-default text-white">Ký</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card h-100 border-default">
+                    <div class="card-body">
+                        <h5 class="card-title">Ký Hash Nhiều</h5>
+                        <p class="card-text border border-default">
+                        <pre id="hashToSignMultiple1" class="text-start"></pre>
+                        </p>
+                        <p class="card-text border border-default">
+                        <pre id="hashToSignMultiple1Result" class="text-start"></pre>
+                        </p>
+                        <p class="card-text border border-default">
+                        <pre id="hashToSignMultiple2" class="text-start"></pre>
+                        </p>
+                        <p class="card-text border border-default">
+                        <pre id="hashToSignMultipleResult2" class="text-start"></pre>
+                        </p>
+                        <a id="btnHashSignMultiple" class="btn btn-default border-default text-white">Ký</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <footer class="bg-blue-default text-white text-center py-3 mt-5 fixed-bottom">
         <p>&copy; 2025 Công ty cổ phần dịch vụ T-VAN HILO. All rights reserved.</p>
     </footer>
-  </body>
+</body>
+
 </html>

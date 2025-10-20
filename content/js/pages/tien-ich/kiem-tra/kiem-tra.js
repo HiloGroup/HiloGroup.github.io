@@ -1,36 +1,29 @@
-HILOGroup.sign.checkAllPorts()
 
-    .then(results => {
-        const contentFeatures = document.getElementById('content-features');
-        results.forEach(result => {
+const contentFeatures = document.getElementById('content-features');
+$("#btnOpenApplication").click(function() {
+    HiloPluginSignature.Plugin.openApp()
+});
+$("#btnShowPorts").click(function() {
+    HiloPluginSignature.Plugin.checkAllHosts().then(hosts => {
+        contentFeatures.innerHTML = '';
+        console.log(hosts);
+        hosts.forEach(host => {
             const card = document.createElement('div');
             card.className = 'col-md-3';
             card.innerHTML = `
                 <div class="card h-100 border-default">
                     <div class="card-body">
-                        <h5 class="card-title">${result.schema}://localhost:${result.port}</h5>
-                        <p class="card-text">Version: ${result.version || 'Not available'}</p>
-                        ${result.version ? `<a href="${result.schema}://localhost:${result.port}/api/swagger/index.html" class="btn btn-default border-default text-white">API</a>` : ''}
+                        <h5 class="card-title">${host.Host}</h5>
+                        <p class="card-text">Version: ${host.Version || 'Not available'}</p>    
+                        ${host.IsAvailability ? `
+                        <a class="btn btn-default border-default text-white">Kết nối thành công</a>` : '<p class="text-danger">Không kết nối được</p>'}      
                     </div>
                 </div>
             `;
             contentFeatures.appendChild(card);
-        });
-        if (results.every(r => !r.version)) {
-            const card = document.createElement('div');
-            card.className = 'col-md-3';
-            card.innerHTML = `
-                <div class="card h-100 border-default">
-                    <div class="card-body">
-                        <h5 class="card-title">Mở ứng dụng</h5>
-                        <p class="card-text"></p>
-                        <a href="HiloPlugin://sign" class="btn btn-default border-default text-white">Mở ứng dụng</a>
-                    </div>
-                </div>
-            `;
-            contentFeatures.appendChild(card);
-        }
+                });
     })
     .catch(error => {
-        console.error("Error checking ports:", error);
-    });
+        contentFeatures.innerHTML = error;
+    })
+});
