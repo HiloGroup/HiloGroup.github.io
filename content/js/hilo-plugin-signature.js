@@ -3,7 +3,7 @@ window.HiloPluginSignature = window.HiloPluginSignature || {};
 window.HiloPluginSignature.Plugin = {
     schemas: ['http', 'https'],
     ports: [56789, 5050, 6060, 7070, 8080, 9090, 6789],
-    domain: "hilo-signature-plugin.hilo.com.vn",
+    domain: "localhost",
     deeplinkUrl: "HiloPlugin://openapp",
     linkDownload: "https://hilogroup.github.io/pages/tai-xuong/index.html",
     url: {
