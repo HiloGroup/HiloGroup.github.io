@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b3a166ac-6ebc-4b88-8042-901b720f95f0",
+		"_postman_id": "e5098d8a-1bf3-4a6e-a7e5-25424e6d5abc",
 		"name": "Hilo Plugin Ký số",
 		"description": "# Chào mừng đến với công ty cổ phần dịch vụ T-VAN HILO\n\nPhần mềm hỗ trợ ký số T-VAN HILO giúp bạn ký số an toàn cho hóa đơn điện tử, văn bản, tài liệu.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -19,10 +19,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{schema}}{{host}}/api/certificate/getversion",
+									"raw": "http://localhost:56789/api/certificate/getversion",
+									"protocol": "http",
 									"host": [
-										"{{schema}}{{host}}"
+										"localhost"
 									],
+									"port": "56789",
 									"path": [
 										"api",
 										"certificate",
@@ -38,10 +40,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{schema}}{{host}}/api/certificate/get",
+									"raw": "http://localhost:56789/api/certificate/get",
+									"protocol": "http",
 									"host": [
-										"{{schema}}{{host}}"
+										"localhost"
 									],
+									"port": "56789",
 									"path": [
 										"api",
 										"certificate",
@@ -57,10 +61,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{schema}}{{host}}/api/certificate/CheckCRL?CertSerial=",
+									"raw": "http://localhost:56789/api/certificate/CheckCRL?CertSerial=",
+									"protocol": "http",
 									"host": [
-										"{{schema}}{{host}}"
+										"localhost"
 									],
+									"port": "56789",
 									"path": [
 										"api",
 										"certificate",
@@ -82,10 +88,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{schema}}{{host}}/api/certificate/CheckOCSP?CertSerial=",
+									"raw": "http://localhost:56789/api/certificate/CheckOCSP?CertSerial=",
+									"protocol": "http",
 									"host": [
-										"{{schema}}{{host}}"
+										"localhost"
 									],
+									"port": "56789",
 									"path": [
 										"api",
 										"certificate",
@@ -107,10 +115,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{schema}}{{host}}/api/certificate/getall",
+									"raw": "http://localhost:56789/api/certificate/getall",
+									"protocol": "http",
 									"host": [
-										"{{schema}}{{host}}"
+										"localhost"
 									],
+									"port": "56789",
 									"path": [
 										"api",
 										"certificate",
@@ -135,10 +145,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{schema}}{{host}}/api/certificate/Sign78",
+									"raw": "http://localhost:56789/api/certificate/Sign78",
+									"protocol": "http",
 									"host": [
-										"{{schema}}{{host}}"
+										"localhost"
 									],
+									"port": "56789",
 									"path": [
 										"api",
 										"certificate",
@@ -163,10 +175,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{schema}}{{host}}/api/certificate/Sign78s",
+									"raw": "http://localhost:56789/api/certificate/Sign78s",
+									"protocol": "http",
 									"host": [
-										"{{schema}}{{host}}"
+										"localhost"
 									],
+									"port": "56789",
 									"path": [
 										"api",
 										"certificate",
@@ -191,10 +205,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{schema}}{{host}}/api/certificate/InstallRootCA",
+									"raw": "http://localhost:56789/api/certificate/InstallRootCA",
+									"protocol": "http",
 									"host": [
-										"{{schema}}{{host}}"
+										"localhost"
 									],
+									"port": "56789",
 									"path": [
 										"api",
 										"certificate",
@@ -224,10 +240,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{schema}}{{host}}/api/hash/Sign",
+									"raw": "http://localhost:56789/api/hash/Sign",
+									"protocol": "http",
 									"host": [
-										"{{schema}}{{host}}"
+										"localhost"
 									],
+									"port": "56789",
 									"path": [
 										"api",
 										"hash",
@@ -252,10 +270,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{schema}}{{host}}/api/hash/Signs",
+									"raw": "http://localhost:56789/api/hash/Signs",
+									"protocol": "http",
 									"host": [
-										"{{schema}}{{host}}"
+										"localhost"
 									],
+									"port": "56789",
 									"path": [
 										"api",
 										"hash",
