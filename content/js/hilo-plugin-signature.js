@@ -1,8 +1,8 @@
 window.HiloPluginSignature = window.HiloPluginSignature || {};
 
 window.HiloPluginSignature.Plugin = {
-    schemas: ['http', 'https'],
-    ports: [56789, 5050, 6060, 7070, 8080, 9090, 6789],
+    httpPort:[56789,5050,6060],
+    httpsPort:[56790,5051,6061],
     domain: "localhost",
     deeplinkUrl: "HiloPlugin://openapp",
     linkDownload: "https://hilogroup.github.io/pages/tai-xuong/index.html",
@@ -100,8 +100,11 @@ window.HiloPluginSignature.Plugin = {
                 ;
         });
     },
+    createHost(schema,port){
+        return  `${schema}://${this.domain}:${port}`
+    },
     init() {
-        this.hosts = this.schemas.flatMap(schema => this.ports.map(port => `${schema}://${this.domain}:${port}`));
+        this.hosts = [...this.httpPort.map(port => this.createHost("http",port)), ...this.httpsPort.map(port =>this.createHost("https",port))]
     },
     openApp() {
         var deeplinkUrl = this.deeplinkUrl;

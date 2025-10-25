@@ -4,12 +4,11 @@
   <meta charset="utf-8" />
         <meta http-equiv="Content-Security-Policy"
       content="
-        default-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://fonts.googleapis.com  https://hilo-signature-plugin.hilo.com.vn:56789 https://hilo-signature-plugin.hilo.com.vn:5050 https://hilo-signature-plugin.hilo.com.vn:6060 https://hilo-signature-plugin.hilo.com.vn:7070 https://hilo-signature-plugin.hilo.com.vn:8080 https://hilo-signature-plugin.hilo.com.vn:9090 https://hilo-signature-plugin.hilo.com.vn:6789 http://hilo-signature-plugin.hilo.com.vn:56789 http://hilo-signature-plugin.hilo.com.vn:5050 http://hilo-signature-plugin.hilo.com.vn:6060 http://hilo-signature-plugin.hilo.com.vn:7070 http://hilo-signature-plugin.hilo.com.vn:8080 http://hilo-signature-plugin.hilo.com.vn:9090 http://hilo-signature-plugin.hilo.com.vn:6789;
-        connect-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://fonts.googleapis.com  https://hilo-signature-plugin.hilo.com.vn:56789 https://hilo-signature-plugin.hilo.com.vn:5050 https://hilo-signature-plugin.hilo.com.vn:6060 https://hilo-signature-plugin.hilo.com.vn:7070 https://hilo-signature-plugin.hilo.com.vn:8080 https://hilo-signature-plugin.hilo.com.vn:9090 https://hilo-signature-plugin.hilo.com.vn:6789 http://hilo-signature-plugin.hilo.com.vn:56789 http://hilo-signature-plugin.hilo.com.vn:5050 http://hilo-signature-plugin.hilo.com.vn:6060 http://hilo-signature-plugin.hilo.com.vn:7070 http://hilo-signature-plugin.hilo.com.vn:8080 http://hilo-signature-plugin.hilo.com.vn:9090 http://hilo-signature-plugin.hilo.com.vn:6789;
-        img-src 'self' data:;
-        script-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://fonts.googleapis.com;
-        style-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://fonts.googleapis.com;
-        upgrade-insecure-requests;
+        default-src *;
+        connect-src *;
+        img-src *;
+        script-src *;
+        style-src *;
       "/>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
@@ -65,30 +64,9 @@
                         <h5 class="card-title">Bộ cài tất cả</h5>
                         <p class="card-text">Chọn http hoặc https khi cài đặt</p>
                         <p class="card-text">(Khuyến nghị chọn http khi cài đặt)</p>
-                        <a href="https://github.com/HiloGroup/Hilo.Signature/releases/download/all-latest/HiloPlugin.zip" class="btn  btn-default btn-primary"><i class="fa-solid fa-download"></i>Tải xuống Zip</a>
-                        <a href="https://github.com/HiloGroup/Hilo.Signature/releases/download/all-latest/HiloPlugin.exe" class="btn  btn-default btn-primary"><i class="fa-solid fa-download"></i>Tải xuống Exe</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card h-100 border-default">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Bộ cài HTTP</h5>
-                        <p class="card-text">Chỉ hỗ trợ kết nối http</p>
-                        <p class="card-text">(Khuyến nghị dùng)</p>
-                        <a href="https://github.com/HiloGroup/Hilo.Signature/releases/download/http-latest/HiloPlugin.zip" class="btn  btn-default btn-primary"><i class="fa-solid fa-download"></i>Tải xuống Zip</a>
-                        <a href="https://github.com/HiloGroup/Hilo.Signature/releases/download/http-latest/HiloPlugin.exe" class="btn  btn-default btn-primary"><i class="fa-solid fa-download"></i>Tải xuống Exe</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card h-100 border-default">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Bộ cài HTTPS</h5>
-                        <p class="card-text">Chỉ hỗ trợ kết nối https</p>
-                        <p class="card-text">(Không khuyến nghị dùng)</p>
-                        <a href="https://github.com/HiloGroup/Hilo.Signature/releases/download/https-latest/HiloPlugin.zip" class="btn  btn-default btn-primary"><i class="fa-solid fa-download"></i>Tải xuống Zip</a>
-                        <a href="https://github.com/HiloGroup/Hilo.Signature/releases/download/https-latest/HiloPlugin.exe" class="btn  btn-default btn-primary"><i class="fa-solid fa-download"></i>Tải xuống Exe</a>
+                        <a href="https://github.com/HiloGroup/Hilo.Signature/releases/download/latest/HiloPlugin.zip" class="btn  btn-default btn-primary"><i class="fa-solid fa-download"></i>Tải xuống Zip</a>
+                        <a href="https://github.com/HiloGroup/Hilo.Signature/releases/download/latest/HiloPlugin.exe" class="btn  btn-default btn-primary"><i class="fa-solid fa-download"></i>Tải xuống Exe</a>
+                        <a href="https://github.com/HiloGroup/Hilo.Signature/releases/tag/latest" class="btn  btn-default btn-primary"><i class="fa-solid fa-download"></i>Link</a>
                     </div>
                 </div>
             </div>
