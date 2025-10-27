@@ -16,7 +16,8 @@ $("#btnShowPorts").click(function() {
                         <h5 class="card-title">${host.Host}</h5>
                         <p class="card-text">Version: ${host.Version || 'Not available'}</p>    
                         ${host.IsAvailability ? `
-                        <a class="btn btn-default border-default text-white">Kết nối thành công</a>` : '<p class="text-danger">Không kết nối được</p>'}      
+                        <p><a class="btn btn-default border-default text-white">Kết nối thành công</a></p>` : '<p class="text-danger">Không kết nối được</p>'}      
+                        <p><a class="btn btn-default border-default text-white" href="${host.Host}/certificate/getversion" >Kiểm tra</a></p>
                     </div>
                 </div>
             `;
