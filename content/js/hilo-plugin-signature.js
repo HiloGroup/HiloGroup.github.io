@@ -10,10 +10,11 @@ window.HiloPluginSignature.Plugin = {
         getVersion: "/api/certificate/getversion",
         getAllCertificates: "/api/certificate/getall",
         selectCertificate: "/api/certificate/get",
+        reopenStoreCertificate: "/api/certificate/storereopen",
         signXml: "/api/certificate/sign78",
         signXmls: "/api/certificate/Sign78s",
         signHash: "/api/hash/Sign",
-        signHashs: "/api/hash/Signs",
+        signHashs: "/api/hash/Signs"
     },
     hosts: [],
     availabilityHosts: [],
@@ -161,6 +162,17 @@ window.HiloPluginSignature.Plugin = {
     signHash(data) {
 
         return this.getRandomHost().then((host) => this.httpRequest(`${host}${this.url.signHash}`, 'POST', data));
+
+    },
+    reopenStore(){
+        return this.getRandomHost()
+        .then((host) => {
+            if (this.availabilityHosts.length == 0)
+                throw 'Không có cổng nào đc mở'
+            else
+                return Promise.all(this.availabilityHosts.map(host => this.httpRequest(`${host.Host}${this.url.reopenStoreCertificate}`, 'GET')));
+            
+        });
 
     },
     signHashs(data) {
