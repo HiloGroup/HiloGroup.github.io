@@ -1,7 +1,7 @@
 window.HiloPlugin = window.HiloPlugin || {};
 
 HiloPlugin.Config = {
-    http:[56789,5050,6060],
+    http: [56789, 5050, 6060],
     https: [56790, 5051, 6061],
     deeplink: "HiloPlugin://openapp",
 }
@@ -9,7 +9,7 @@ HiloPlugin.Api = {
     getUrl: function (protocol, port) {
         return `${protocol}://localhost:${port}`;
     },
-    callApi: async function (protocol, port, endpoint, method = 'GET', body = null, timeoutMs = 2000) {
+    callApi: async function (protocol, port, endpoint, method = 'GET', body = null, timeoutMs = 600000) {
         const url = this.getUrl(protocol, port) + endpoint;
 
         // Add a timeout signal so failed/hanging ports reject quickly
@@ -40,7 +40,7 @@ HiloPlugin.Api = {
         }
     },
     getVersion: async function (protocol, port) {
-        const response = await this.callApi(protocol, port, '/api/certificate/getversion');
+        const response = await this.callApi(protocol, port, '/api/certificate/getversion', "GET", null, 5000);
         if (response && response.ok) {
             try {
                 const data = await response.json();
@@ -90,7 +90,7 @@ HiloPlugin.Api = {
             return data.Data;
         }
         throw new Error('Failed to sign XML. The plugin may not be running or the request timed out.');
-    },    
+    },
     signData: async function (protocol, port, data, hashAlgorithm, rsaSignaturePadding, certificateSerialNumber) {
         const response = await this.callApi(protocol, port, '/api/data/sign', 'POST', {
             data: data,
@@ -123,14 +123,14 @@ HiloPlugin.Api = {
         }
         throw new Error('Failed to sign data. The plugin may not be running or the request timed out.');
     },
-    signPdf: async function (protocol, port, data,image, hashAlgorithm, rsaSignaturePadding, certificateSerialNumber) {
+    signPdf: async function (protocol, port, data, image, hashAlgorithm, rsaSignaturePadding, certificateSerialNumber) {
         const response = await this.callApi(protocol, port, '/api/SignPdf/sign', 'POST', {
             Data: data,
             Image: image,
             HashAlgorithm: hashAlgorithm,
             RSASignaturePadding: rsaSignaturePadding,
             CertSerial: certificateSerialNumber
-        },600000);
+        });
         if (response && response.ok) {
             const data = await response.json();
             if (!data.status)
@@ -182,9 +182,9 @@ HiloPlugin.Utils = {
         var { protocol, port } = await this.getRandomAvailablePort();
         return await HiloPlugin.Api.signHash(protocol, port, data, hashAlgorithm, rsaSignaturePadding, certificateSerialNumber);
     },
-    signPdf: async function (data,image, hashAlgorithm, rsaSignaturePadding, certificateSerialNumber) {
+    signPdf: async function (data, image, hashAlgorithm, rsaSignaturePadding, certificateSerialNumber) {
         var { protocol, port } = await this.getRandomAvailablePort();
-        return await HiloPlugin.Api.signPdf(protocol, port, data,image, hashAlgorithm, rsaSignaturePadding, certificateSerialNumber);
+        return await HiloPlugin.Api.signPdf(protocol, port, data, image, hashAlgorithm, rsaSignaturePadding, certificateSerialNumber);
     }
 
 
