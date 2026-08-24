@@ -8,7 +8,7 @@ var signPdfButton = document.getElementById('signPdfButton');
 var signHashButton = document.getElementById('signHashButton');
 var signDataButton = document.getElementById('signDataButton');
 async function readBase64File(input) {
-    if(input.files.length === 0) return null;
+    if (input.files.length === 0) return null;
     const file = input.files[0];
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -16,7 +16,7 @@ async function readBase64File(input) {
         reader.onerror = error => reject(error);
         reader.readAsDataURL(file);
     });
-} 
+}
 
 function downloadPDFFromBase64(base64Data, fileName = 'document.pdf') {
     // 1. Loại bỏ tiền tố "data:application/pdf;base64," nếu API trả về kèm theo
@@ -68,8 +68,7 @@ checkPortButton.addEventListener('click', async () => {
                                 <p><span class="mt-3 inline-block rounded-full bg-slate-100 py-1 text-xs font-bold text-slate-500 ${statusClass}">${dataText}</span></p>
                             </div>`;
     }
-    if (results.every(result => result.status === 'offline'))
-    {
+    if (results.every(result => result.status === 'offline')) {
         checkPortContent.innerHTML += `<div class="rounded-xl border border-slate-200 p-4">
                                 <button id="openAppButton" type="button" class="rounded-lg bg-brand px-4 py-2.5 text-sm font-bold text-white hover:bg-blue-700"><i class="fa-solid fa-ope mr-2"></i>Mở ứng dụng</button>
                             </div>`;
@@ -92,7 +91,7 @@ checkPortButton.addEventListener('click', async () => {
             } catch (error) {
                 console.error('Error opening the app:', error);
             }
-        });                            
+        });
     }
 });
 checkConfigButton.addEventListener('click', async () => {
@@ -108,7 +107,7 @@ checkConfigButton.addEventListener('click', async () => {
                                 <p class="text-xs font-semibold uppercase text-slate-400">Cấu hình đường dẫn</p>
                                 <p class="mt-1 font-bold text-slate-800">Ứng dụng : <a href="${configData?.Path.BaseDirectory}" target="_blank">${configData?.Path.BaseDirectory}</a></p>
                                 <p class="mt-1 font-bold text-slate-800">TempPath : <a href="${configData?.Path.TempPath}" target="_blank">${configData?.Path.TempPath}</a></p>
-                                <p class="mt-1 font-bold text-slate-800">LogPath : <a href="${configData?.Path.LogPath}" target="_blank">${configData?.Path.LogPath}</a></p>
+                                <p class="mt-1 font-bold text-slate-800">PathLog : <a href="${configData?.Path.PathLog}" target="_blank">${configData?.Path.PathLog}</a></p>
                                 <p class="mt-1 font-bold text-slate-800">MyDocuments : <a href="${configData?.Path.MyDocuments}" target="_blank">${configData?.Path.MyDocuments}</a></p>
                                 <p class="mt-1 font-bold text-slate-800">ApplicationData : <a href="${configData?.Path.ApplicationData}" target="_blank">${configData?.Path.ApplicationData}</a></p>
                                 <p class="mt-1 font-bold text-slate-800">LocalApplicationData : <a href="${configData?.Path.LocalApplicationData}" target="_blank">${configData?.Path.LocalApplicationData}</a></p>
@@ -161,8 +160,7 @@ checkCertificateButton.addEventListener('click', async () => {
         certificateContent.innerHTML = '';
 
 
-        if (certificates && certificates.length > 0) 
-        {
+        if (certificates && certificates.length > 0) {
             for (const cert of certificates) {
                 certificateContent.innerHTML += `<div class="rounded-xl border border-slate-600 border-dashed  p-4">
                                 <p class="text-xs font-semibold uppercase text-slate-400">Chứng thư số  ${cert?.SerialNumber}</p>
@@ -217,7 +215,7 @@ signXmlButton.addEventListener('click', async () => {
     } catch (error) {
         console.error('Error fetching configuration:', error);
 
-        signedXmlResult.value=error;
+        signedXmlResult.value = error;
     }
 });
 
@@ -250,7 +248,7 @@ signPdfButton.addEventListener('click', async () => {
 
         alert('Lỗi khi ký PDF: ' + error.message);
     }
-    
+
 });
 signHashButton.addEventListener('click', async () => {
     var signedHashResult = document.getElementById('signedHashResult');
