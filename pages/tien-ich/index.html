@@ -1,96 +1,276 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
+
 <head>
-    <meta charset="utf-8" />
-       <meta http-equiv="Content-Security-Policy"
-      content="
-        default-src *;
-        connect-src *;
-        img-src *;
-        script-src *;
-        style-src *;
-      "/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../../content/images/App.ico" />
+    <meta name="description"
+        content="Hilo Plugin - Giải pháp ký số USB Token nhanh chóng, an toàn trên trình duyệt web." />
+    <title>Hilo Plugin | Ký số USB Token trên Web</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="../../content/css/pages/tien-ich/index.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <script src="../../content/js/pages/tien-ich/index.js" defer></script>
+    <script src="../../content/js/hilo-plugin.js" defer></script>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
-  <link rel="icon" type="image/x-icon" href="../../content/image/hilo.ico">
-  <title>Phần mềm ký số T-VAN HILO</title>
-  <meta name="description" content="Phần mềm hỗ trợ ký số HILO — Ký số an toàn cho hóa đơn điện tử, văn bản, tài liệu. Hỗ trợ PKCS#11, token USB, HSM, XMLDSig, CMS/P7S, PDF ký số.">
-  <meta name="theme-color" content="#0f766e" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="../../content/css/page.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.min.js" integrity="sha512-nKXmKvJyiGQy343jatQlzDprflyB5c+tKCzGP3Uq67v+lmzfnZUi/ZT+fc6ITZfSC5HhaBKUIvr/nTLCV+7F+Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="../../content/js/sign.js" defer></script>
 </head>
-<body>
-     <nav class="navbar navbar-expand-lg navbar-dark bg-default">
-        <div class="container-fluid">
-            <a class="navbar-brand bg-white p-2 rounded" href="#">
-                <img src="../../content/image/hilo.png" height="40" alt="HILO Logo">
+
+<body class="bg-slate-50 font-sans text-slate-700 antialiased">
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8"
+            aria-label="Điều hướng chính">
+            <a href="../../index.html#trang-chu" class="flex items-center gap-3 text-xl font-extrabold text-navy">
+                <span
+                    class="grid h-10 w-10 place-items-center rounded-xl bg-brand text-white shadow-lg shadow-blue-200"><i
+                        class="fa-solid fa-signature"></i></span>
+                Hilo Plugin
             </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="../../index.html">Trang Chủ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Tiện ích</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../tai-xuong/index.html">Tải xuống</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../lien-he/index.html">Liên Hệ</a>
-                    </li>
-                </ul>
+            <div class="hidden items-center gap-7 text-sm font-semibold text-slate-600 lg:flex">
+                <a class="hover:text-brand" href="../../index.html#trang-chu">Trang chủ</a><a class="hover:text-brand"
+                    href="../../index.html#tinh-nang">Tính năng</a><a class="hover:text-brand" href="../../index.html#huong-dan">Hướng dẫn cài đặt</a><a
+                    class="hover:text-brand" href="../../index.html#tai-ve">Tải về</a><a class="hover:text-brand" href="../../index.html#lien-he">Liên
+                    hệ</a>
+            </div>
+            <a href="https://github.com/HiloGroup/Hilo.Signature/releases/download/latest/HiloPlugin.zip"
+                class="rounded-lg bg-orange-500 px-4 py-2.5 text-sm font-bold text-white shadow-md shadow-orange-200 transition hover:bg-orange-600">Tải
+                Plugin Ngay <i class="fa-solid fa-arrow-down ml-1"></i></a>
+        </nav>
+    </header>
+
+    <main class="min-h-[calc(100vh-9rem)] bg-slate-50 py-10">
+        <section class="mx-auto max-w-6xl px-5 lg:px-8">
+            <div class="mb-8 text-center">
+                <p class="text-sm font-bold uppercase tracking-widest text-brand">Hilo Plugin</p>
+                <h1 class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">Tiện ích kiểm tra Plugin</h1>
+                <p class="mx-auto mt-3 max-w-2xl text-slate-500">Kiểm tra kết nối, chứng thư số và thử các chức năng ký số trên máy của bạn.</p>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <div class="flex overflow-x-auto border-b border-slate-200 px-3 pt-3" role="tablist" aria-label="Tiện ích kiểm tra">
+                    <button type="button" role="tab" aria-selected="true" data-tool-tab="port" class="shrink-0 rounded-t-lg bg-blue-50 px-4 py-3 text-sm font-bold text-brand"><i class="fa-solid fa-network-wired mr-2"></i>Kiểm tra cổng</button>
+                    <button type="button" role="tab" aria-selected="false" data-tool-tab="config" class="shrink-0 rounded-t-lg px-4 py-3 text-sm font-bold text-slate-500 transition hover:bg-slate-50 hover:text-brand"><i class="fa-solid fa-cog mr-2"></i>Cấu hình</button>
+                    <button type="button" role="tab" aria-selected="false" data-tool-tab="certificate" class="shrink-0 rounded-t-lg px-4 py-3 text-sm font-bold text-slate-500 transition hover:bg-slate-50 hover:text-brand"><i class="fa-solid fa-certificate mr-2"></i>Kiểm tra chứng thư số</button>
+                    <button type="button" role="tab" aria-selected="false" data-tool-tab="xml" class="shrink-0 rounded-t-lg px-4 py-3 text-sm font-bold text-slate-500 transition hover:bg-slate-50 hover:text-brand"><i class="fa-solid fa-code mr-2"></i>Ký XML</button>
+                    <button type="button" role="tab" aria-selected="false" data-tool-tab="pdf" class="shrink-0 rounded-t-lg px-4 py-3 text-sm font-bold text-slate-500 transition hover:bg-slate-50 hover:text-brand"><i class="fa-solid fa-file-pdf mr-2"></i>Ký PDF</button>
+                    <button type="button" role="tab" aria-selected="false" data-tool-tab="hash" class="shrink-0 rounded-t-lg px-4 py-3 text-sm font-bold text-slate-500 transition hover:bg-slate-50 hover:text-brand"><i class="fa-solid fa-fingerprint mr-2"></i>Ký Hash</button>
+                    <button type="button" role="tab" aria-selected="false" data-tool-tab="data" class="shrink-0 rounded-t-lg px-4 py-3 text-sm font-bold text-slate-500 transition hover:bg-slate-50 hover:text-brand"><i class="fa-solid fa-database mr-2"></i>Ký Data</button>
+                </div>
+
+                <div class="p-6 sm:p-8">
+                    <section id="tab-port" role="tabpanel" data-tool-panel="port">
+                        <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+                            <div><h2 class="text-xl font-extrabold text-slate-900">Kiểm tra cổng kết nối</h2><p class="mt-1 text-sm text-slate-500">Kiểm tra Local API của Hilo Plugin có đang hoạt động hay không.</p></div>
+                            <button id="checkPortButton" type="button" class="rounded-lg bg-brand px-4 py-2.5 text-sm font-bold text-white hover:bg-blue-700"><i class="fa-solid fa-rotate mr-2"></i>Kiểm tra</button>
+                        </div>
+                        <div class="mt-6 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-5 grid gap-4 sm:grid-cols-3" id="checkPortContent">
+                        </div>
+                    </section>
+                    <section id="tab-config" role="tabpanel" data-tool-panel="config" hidden>
+                        <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                                <h2 class="text-xl font-extrabold text-slate-900">Cấu hình Plugin</h2>
+                                <p class="mt-1 text-sm text-slate-500">Xem các thiết lập của Hilo Plugin.</p>
+                            </div>
+                            <button id="checkConfigButton" type="button"
+                                class="rounded-lg bg-brand px-4 py-2.5 text-sm font-bold text-white hover:bg-blue-700"><i
+                                    class="fa-solid fa-rotate mr-2"></i>Kiểm tra</button>
+                        </div>
+                        <div class="mt-6 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-5 grid gap-4 sm:grid-cols-1" id="configContent">
+                            
+                        </div>
+                    </section>
+
+                    <section id="tab-certificate" role="tabpanel" data-tool-panel="certificate" hidden>
+                        <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                                <h2 class="text-xl font-extrabold text-slate-900">Kiểm tra chứng thư số</h2>
+                                <p class="mt-1 text-sm text-slate-500">Xem các chứng thư số từ USB Token đang kết nối.</p>
+                            </div>
+                            <button id="checkCertificateButton" type="button"
+                                class="rounded-lg bg-brand px-4 py-2.5 text-sm font-bold text-white hover:bg-blue-700"><i
+                                    class="fa-solid fa-rotate mr-2"></i>Kiểm tra</button>
+                        </div>
+                        <div class="mt-6 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-5 grid gap-4 sm:grid-cols-1"
+                            id="certificateContent">
+                        
+                        </div>
+                    </section>
+
+                    <section id="tab-xml" role="tabpanel" data-tool-panel="xml" hidden>
+                        <h2 class="text-xl font-extrabold text-slate-900">Ký XML</h2>
+                        <p class="mt-1 text-sm text-slate-500">Nhập XML và node cần ký.</p>
+                        <div class="mt-5 grid gap-5">
+                            <label class="text-sm font-bold text-slate-700">XML cần ký
+                                <textarea id="xmlData" rows="20"
+                                    class="mt-2 min-h-40 w-full rounded-lg border border-slate-300 p-3 font-mono text-sm font-normal outline-none focus:border-brand"
+                                    placeholder="&lt;Invoice Id=&quot;DL&quot;&gt;...&lt;/Invoice&gt;">&lt;XmlTemplate&gt;&lt;Data Id="HiloGroup"&gt;&lt;/Data&gt;&lt;DSCKS&gt;&lt;NNT /&gt;&lt;/DSCKS&gt;&lt;/XmlTemplate&gt;</textarea>
+                            </label>
+                            <label class="text-sm font-bold text-slate-700">ID node cần ký
+                                <input id="xmlIdToSign"
+                                    class="mt-2 w-full rounded-lg border border-slate-300 p-3 font-normal outline-none focus:border-brand"
+                                    value="#HiloGroup" />
+                            </label>
+                            <select id="xmlHashAlgorithm" class="mt-2 w-full rounded-lg border border-slate-300 p-3 font-normal outline-none focus:border-brand">
+                                <option value="SHA256">SHA256</option>
+                                <option value="SHA1">SHA1</option>
+                                <option value="SHA384">SHA384</option>
+                                <option value="SHA512">SHA512</option>
+                            </select>
+                            <select id="xmlRSASignaturePadding" class="mt-2 w-full rounded-lg border border-slate-300 p-3 font-normal outline-none focus:border-brand">
+                                <option value="Pkcs1">Pkcs1</option>
+                                <option value="Pss">Pss</option>
+                            </select>
+                            <button id="signXmlButton" type="button"
+                                class="w-fit rounded-lg bg-brand px-4 py-2.5 text-sm font-bold text-white hover:bg-blue-700"><i
+                                    class="fa-solid fa-pen-nib mr-2"></i>Ký XML</button>
+                            <textarea id="signedXmlResult" rows="50"
+                                class="mt-5 min-h-40 w-full rounded-lg border border-slate-300 p-3 font-mono text-sm font-normal outline-none focus:border-brand"
+                                placeholder="Kết quả XML đã ký" readonly></textarea> </div>
+                    </section>
+
+                    <section id="tab-pdf" role="tabpanel" data-tool-panel="pdf" hidden>
+                        <h2 class="text-xl font-extrabold text-slate-900">Ký Pdf</h2>
+                        <p class="mt-1 text-sm text-slate-500">Nhập Pdf và node cần ký.</p>
+                        <div class="mt-5 grid gap-5">
+                            <label class="text-sm font-bold text-slate-700">Pdf cần ký
+                                <input id="pdfFile" type="file" accept=".pdf"
+                                    class="mt-2 w-full rounded-lg border border-slate-300 p-3 font-normal outline-none focus:border-brand" />
+                            </label>
+                            <label class="text-sm font-bold text-slate-700">Ảnh chữ ký
+                                <input id="pdfSignatureImage" type="file" accept="image/*"
+                                    class="mt-2 w-full rounded-lg border border-slate-300 p-3 font-normal outline-none focus:border-brand" />
+                            </label>
+                            <select id="pdfHashAlgorithm"
+                                class="mt-2 w-full rounded-lg border border-slate-300 p-3 font-normal outline-none focus:border-brand">
+                                <option value="SHA256">SHA256</option>
+                                <option value="SHA1">SHA1</option>
+                                <option value="SHA384">SHA384</option>
+                                <option value="SHA512">SHA512</option>
+                            </select>
+                            <select id="pdfRSASignaturePadding"
+                                class="mt-2 w-full rounded-lg border border-slate-300 p-3 font-normal outline-none focus:border-brand">
+                                <option value="Pkcs1">Pkcs1</option>
+                                <option value="Pss">Pss</option>
+                            </select>
+                            <button id="signPdfButton" type="button"
+                                class="w-fit rounded-lg bg-brand px-4 py-2.5 text-sm font-bold text-white hover:bg-blue-700"><i
+                                    class="fa-solid fa-pen-nib mr-2"></i>Ký Pdf</button>
+                        </div>
+                    </section>
+
+                    <section id="tab-hash" role="tabpanel" data-tool-panel="hash" hidden>
+                        <h2 class="text-xl font-extrabold text-slate-900">Ký Hash</h2>
+                        <p class="mt-1 text-sm text-slate-500">Nhập giá trị hash Base64 để ký trực tiếp.</p>
+                        <div class="mt-5 grid gap-5">
+                            <label class="mt-5 block text-sm font-bold text-slate-700">Hash cần ký<textarea id="hashData"
+                                    class="mt-2 min-h-32 w-full rounded-lg border border-slate-300 p-3 font-mono text-sm font-normal outline-none focus:border-brand"
+                                    placeholder="Nhập hash Base64 hoặc SHA-256 hex">nZDylZVX30VECa0DtdL5b47WY3d3lvFNnPEVmlYbfAw=</textarea></label>
+                            <select id="hashHashAlgorithm"
+                                class="mt-2 w-full rounded-lg border border-slate-300 p-3 font-normal outline-none focus:border-brand">
+                                <option value="SHA256">SHA256</option>
+                                <option value="SHA1">SHA1</option>
+                                <option value="SHA384">SHA384</option>
+                                <option value="SHA512">SHA512</option>
+                            </select>
+                            <select id="hashRSASignaturePadding"
+                                class="mt-2 w-full rounded-lg border border-slate-300 p-3 font-normal outline-none focus:border-brand">
+                                <option value="Pkcs1">Pkcs1</option>
+                                <option value="Pss">Pss</option>
+                            </select>
+                            <button id="signHashButton" type="button"
+                                class="w-fit rounded-lg bg-brand px-4 py-2.5 text-sm font-bold text-white hover:bg-blue-700"><i
+                                    class="fa-solid fa-pen-nib mr-2"></i>Ký Hash</button>
+                                    <textarea id="signedHashResult" rows="50"
+                                        class="mt-5 min-h-40 w-full rounded-lg border border-slate-300 p-3 font-mono text-sm font-normal outline-none focus:border-brand"
+                                        placeholder="Kết quả hash đã ký" readonly></textarea>
+                        </div>
+                    </section>
+
+                    <section id="tab-data" role="tabpanel" data-tool-panel="data" hidden>
+                        <h2 class="text-xl font-extrabold text-slate-900">Ký Hash</h2>
+                        <p class="mt-1 text-sm text-slate-500">Nhập giá trị Data Base64 để ký trực tiếp.</p>
+                        <div class="mt-5 grid gap-5">
+                            <label class="mt-5 block text-sm font-bold text-slate-700">Data cần ký<textarea id="hashData"
+                                    class="mt-2 min-h-32 w-full rounded-lg border border-slate-300 p-3 font-mono text-sm font-normal outline-none focus:border-brand"
+                                    placeholder="Nhập data Base64">S2jDtG5nIMSRxrDhu6NjIHBow6lwIGfhu61pIHThu50ga2hhaSB0aGF5IMSR4buVaQ==</textarea></label>
+                            <select id="dataHashAlgorithm"
+                                class="mt-2 w-full rounded-lg border border-slate-300 p-3 font-normal outline-none focus:border-brand">
+                                <option value="SHA256">SHA256</option>
+                                <option value="SHA1">SHA1</option>
+                                <option value="SHA384">SHA384</option>
+                                <option value="SHA512">SHA512</option>
+                            </select>
+                            <select id="dataRSASignaturePadding"
+                                class="mt-2 w-full rounded-lg border border-slate-300 p-3 font-normal outline-none focus:border-brand">
+                                <option value="Pkcs1">Pkcs1</option>
+                                <option value="Pss">Pss</option>
+                            </select>
+                            <button id="signDataButton" type="button"
+                                class="w-fit rounded-lg bg-brand px-4 py-2.5 text-sm font-bold text-white hover:bg-blue-700"><i
+                                    class="fa-solid fa-pen-nib mr-2"></i>Ký Data</button>
+                                    <textarea id="signedDataResult" rows="50"
+                                        class="mt-5 min-h-40 w-full rounded-lg border border-slate-300 p-3 font-mono text-sm font-normal outline-none focus:border-brand"
+                                        placeholder="Kết quả data đã ký" readonly></textarea>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+        <script>
+            document.querySelectorAll('[data-tool-tab]').forEach((tab) => tab.addEventListener('click', () => {
+                document.querySelectorAll('[data-tool-tab]').forEach((item) => {
+                    const active = item === tab;
+                    item.setAttribute('aria-selected', active);
+                    item.classList.toggle('bg-blue-50', active);
+                    item.classList.toggle('text-brand', active);
+                    item.classList.toggle('text-slate-500', !active);
+                });
+                document.querySelectorAll('[data-tool-panel]').forEach((panel) => panel.hidden = panel.dataset.toolPanel !== tab.dataset.toolTab);
+            }));
+        </script>
+    </main>
+
+    <!-- Footer -->
+    <footer id="lien-he" class="bg-slate-950 text-slate-300">
+        <div class="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
+            <div><a href="#trang-chu" class="flex items-center gap-2 text-xl font-extrabold text-white"><i
+                        class="fa-solid fa-signature text-blue-400"></i> Hilo Plugin</a>
+                <p class="mt-4 text-sm leading-relaxed text-slate-400">Giải pháp kết nối ký số USB Token chuyên nghiệp
+                    cho doanh
+                    nghiệp.</p>
+            </div>
+            <div>
+                <h3 class="font-bold text-white">Liên kết</h3>
+                <div class="mt-4 space-y-2 text-sm"><a class="block hover:text-white" href="#tinh-nang">Tính năng</a><a
+                        class="block hover:text-white" href="#huong-dan">Hướng dẫn cài đặt</a><a
+                        class="block hover:text-white" href="#tai-ve">Tải về</a></div>
+            </div>
+            <div>
+                <h3 class="font-bold text-white">Hỗ trợ kỹ thuật</h3>
+                <div class="mt-4 space-y-2 text-sm">
+                    <p><i class="fa-solid fa-phone w-5 text-blue-400"></i> 1900 2929 62</p>
+                    <p><i class="fa-solid fa-envelope w-5 text-blue-400"></i> cskh@hilo.com.vn</p>
+                    <p><i class="fa-solid fa-location-dot w-5 text-blue-400"></i> Tầng 4, Số 6 Ngõ 95 Phố Chùa Bộc, Phường Kim Liên, Hà Nội</p>
+                </div>
+            </div>
+            <div>
+                <h3 class="font-bold text-white">Pháp lý</h3>
+                <div class="mt-4 space-y-2 text-sm"><a class="block hover:text-white" href="#">Điều khoản sử dụng</a><a
+                        class="block hover:text-white" href="#">Chính sách bảo mật</a></div>
             </div>
         </div>
-    </nav>
-    <div class="container-fluid mt-5 mb-5 pb-5 text-center" id="features">
-        <h1 class="text-default mb-4">Tiện ích Ký số T-VAN HILO</h1>
-        <div class="row g-4 justify-content-center">
-            <div class="col-md-3">
-                <div class="card h-100 border-default">
-                    <div class="card-body">
-                        <h5 class="card-title">Chữ ký số</h5>
-                        <p class="card-text">Danh sách chữ ký số trên máy tính</p>
-                        <a href="danh-sach-chu-ky-so/index.html" class="btn btn-default border-default text-white">Chi tiết</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card h-100 border-default">
-                    <div class="card-body">
-                        <h5 class="card-title">Ký số</h5>
-                        <p class="card-text">Thử</p>
-                        <a href="ky-thu/index.html" class="btn btn-default border-default text-white">Chi tiết</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card h-100 border-default">
-                    <div class="card-body">
-                        <h5 class="card-title">Kiểm tra</h5>
-                        <p class="card-text">Check</p>
-                        <a href="kiem-tra/index.html" class="btn btn-default border-default text-white">Chi tiết</a>
-                    </div>
-                </div>
-            </div>
+        <div class="border-t border-slate-800 px-5 py-5 text-center text-sm text-slate-500">© 2026 Hilo. All rights
+            reserved.
         </div>
-    </div>
-    <footer class="bg-blue-default text-white text-center py-3 mt-5 fixed-bottom">
-        <p>&copy; 2025 Công ty cổ phần dịch vụ T-VAN HILO. All rights reserved.</p>
     </footer>
-  </body>
+
+</body>
+
 </html>

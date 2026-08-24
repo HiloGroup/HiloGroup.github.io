@@ -1,0 +1,22 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.hero-grid {
+    background-image: linear-gradient(rgba(255, 255, 255, .08) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .08) 1px, transparent 1px);
+    background-size: 34px 34px;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease;
+}
+
+.faq-item.open .faq-answer {
+    max-height: 180px;
+}
+
+.faq-item.open .faq-icon {
+    transform: rotate(45deg);
+}
